@@ -9,10 +9,10 @@ RUN apt-get update && apt-get install -y wget runit openjdk-8-jdk-headless net-t
 # install hadoop 3.1.1
 COPY config/apache-download.sh /apache-download.sh
 ENV HADOOP_VERSION 3.1.1
-RUN wget /apache-download.sh hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
-    tar -xzvf $HADOOP_VERSION.tar.gz && \
-    mv $HADOOP_VERSION /usr/local/hadoop && \
-    rm $HADOOP_VERSION.tar.gz
+RUN /apache-download.sh hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
+    tar -xzvf hadoop-$HADOOP_VERSION.tar.gz && \
+    mv hadoop-$HADOOP_VERSION /usr/local/hadoop && \
+    rm hadoop-$HADOOP_VERSION.tar.gz
 
 # set environment variable
 ENV JAVA_HOME="/usr"
