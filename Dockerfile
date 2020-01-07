@@ -7,10 +7,12 @@ RUN useradd --create-home --shell /bin/bash hadoop
 RUN apt-get update && apt-get install -y wget runit openjdk-8-jdk-headless net-tools iputils-ping
 
 # install hadoop 3.1.1
-RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-3.1.1/hadoop-3.1.1.tar.gz && \
-    tar -xzvf hadoop-3.1.1.tar.gz && \
-    mv hadoop-3.1.1 /usr/local/hadoop && \
-    rm hadoop-3.1.1.tar.gz
+COPY config/apache-download.sh /apache-download.sh
+ENV HADOOP_VERSION 3.1.1
+RUN wget /apache-download.sh hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
+    tar -xzvf $HADOOP_VERSION.tar.gz && \
+    mv $HADOOP_VERSION /usr/local/hadoop && \
+    rm $HADOOP_VERSION.tar.gz
 
 # set environment variable
 ENV JAVA_HOME="/usr"
