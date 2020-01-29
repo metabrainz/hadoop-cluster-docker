@@ -6,7 +6,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 FILE_PATH=$1
-REDIRECT_BASE_URL="http://apache.rediris.es/"
+REDIRECT_BASE_URL="http://apache.mirror.digionline.de/"
 ARCHIVE_BASE_URL="https://archive.apache.org/dist/"
 
 echo "downloading $FILE_PATH from mirror"
